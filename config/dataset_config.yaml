@@ -1,0 +1,222 @@
+# =============================================================================
+# nuScenes Dataset Configuration
+# =============================================================================
+
+# Dataset paths
+data_root: "/data/nuscenes"
+version: "v1.0-trainval"  # Options: v1.0-trainval, v1.0-test, v1.0-mini
+
+# =============================================================================
+# Sensor Configuration
+# =============================================================================
+
+# Enable/disable sensor modalities
+use_camera: true
+use_lidar: true
+use_radar: true
+
+# =============================================================================
+# Camera Settings
+# =============================================================================
+
+camera_names:
+  - "CAM_FRONT"
+  - "CAM_FRONT_LEFT"
+  - "CAM_FRONT_RIGHT"
+  - "CAM_BACK"
+  - "CAM_BACK_LEFT"
+  - "CAM_BACK_RIGHT"
+
+# Image processing
+image_size: [900, 1600]  # [height, width]
+normalize_image: true
+
+# ImageNet normalization parameters
+image_mean: [0.485, 0.456, 0.406]
+image_std: [0.229, 0.224, 0.225]
+
+# =============================================================================
+# LiDAR Settings
+# =============================================================================
+
+lidar_name: "LIDAR_TOP"
+
+# Point cloud filtering range [x_min, y_min, z_min, x_max, y_max, z_max] in meters
+lidar_points_range: [-50.0, -50.0, -5.0, 50.0, 50.0, 3.0]
+
+# Maximum number of LiDAR points to keep
+max_lidar_points: 40000
+
+# Voxelization settings (optional)
+voxelization:
+  enabled: false
+  voxel_size: [0.1, 0.1, 0.2]  # [x, y, z] in meters
+
+# =============================================================================
+# Radar Settings
+# =============================================================================
+
+radar_names:
+  - "RADAR_FRONT"
+  - "RADAR_FRONT_LEFT"
+  - "RADAR_FRONT_RIGHT"
+  - "RADAR_BACK_LEFT"
+  - "RADAR_BACK_RIGHT"
+
+# =============================================================================
+# Data Augmentation (Training Only)
+# =============================================================================
+
+enable_augmentation: false
+
+# Image augmentation
+flip_probability: 0.5
+brightness_range: [0.8, 1.2]
+contrast_range: [0.8, 1.2]
+saturation_range: [0.8, 1.2]
+
+# Point cloud augmentation
+rotation_range: 10.0  # degrees
+scale_range: [0.95, 1.05]
+translation_range: [0.2, 0.2, 0.2]  # meters
+
+# =============================================================================
+# Coordinate System
+# =============================================================================
+
+# Target coordinate system for output data
+# Options: "global", "ego", "sensor"
+target_coordinate_system: "ego"
+
+# =============================================================================
+# Cache Settings
+# =============================================================================
+
+cache_enabled: true
+cache_dir: "./cache/nuscenes"
+cache_size_limit: 1000  # Maximum number of samples to cache in memory
+
+# =============================================================================
+# Training Settings
+# =============================================================================
+
+training:
+  batch_size: 4
+  num_workers: 4
+  shuffle: true
+  drop_last: true
+  
+  # Data sampling
+  sample_strategy: "sequential"  # Options: sequential, random, weighted
+  
+  # Multi-scale training
+  multi_scale:
+    enabled: false
+    scales: [[600, 1067], [720, 1280], [864, 1536], [900, 1600]]
+
+# =============================================================================
+# Validation/Evaluation Settings
+# =============================================================================
+
+evaluation:
+  batch_size: 1
+  num_workers: 2
+  shuffle: false
+  
+  # Evaluation metrics
+  metrics:
+    - "mAP"
+    - "mATE"
+    - "mASE"
+    - "mAOE"
+    - "mAVE"
+    - "mAAE"
+    - "NDS"
+  
+  # Detection thresholds
+  iou_thresholds: [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95]
+  distance_thresholds: [0.5, 1.0, 2.0, 4.0]
+
+# =============================================================================
+# Category Mapping
+# =============================================================================
+
+categories:
+  - name: "car"
+    nuscenes_names: ["vehicle.car"]
+    detection_range: 50.0
+  
+  - name: "truck"
+    nuscenes_names: ["vehicle.truck"]
+    detection_range: 50.0
+  
+  - name: "bus"
+    nuscenes_names: ["vehicle.bus.rigid", "vehicle.bus.bendy"]
+    detection_range: 50.0
+  
+  - name: "trailer"
+    nuscenes_names: ["vehicle.trailer"]
+    detection_range: 50.0
+  
+  - name: "construction_vehicle"
+    nuscenes_names: ["vehicle.construction"]
+    detection_range: 50.0
+  
+  - name: "pedestrian"
+    nuscenes_names: 
+      - "human.pedestrian.adult"
+      - "human.pedestrian.child"
+      - "human.pedestrian.construction_worker"
+      - "human.pedestrian.police_officer"
+    detection_range: 40.0
+  
+  - name: "motorcycle"
+    nuscenes_names: ["vehicle.motorcycle"]
+    detection_range: 40.0
+  
+  - name: "bicycle"
+    nuscenes_names: ["vehicle.bicycle"]
+    detection_range: 40.0
+  
+  - name: "traffic_cone"
+    nuscenes_names: ["movable_object.trafficcone"]
+    detection_range: 30.0
+  
+  - name: "barrier"
+    nuscenes_names: ["movable_object.barrier"]
+    detection_range: 30.0
+
+# =============================================================================
+# Split Configuration
+# =============================================================================
+
+splits:
+  train:
+    scenes_file: "train.txt"
+    description: "Training split"
+  
+  val:
+    scenes_file: "val.txt"
+    description: "Validation split"
+  
+  test:
+    scenes_file: "test.txt"
+    description: "Test split (no annotations)"
+  
+  mini_train:
+    scenes_file: "mini_train.txt"
+    description: "Mini training split for debugging"
+  
+  mini_val:
+    scenes_file: "mini_val.txt"
+    description: "Mini validation split for debugging"
+
+# =============================================================================
+# Debug Settings
+# =============================================================================
+
+debug:
+  enabled: false
+  max_samples: 100  # Limit number of samples for quick testing
+  visualize: false  # Enable visualization
+  save_intermediate: false  # Save intermediate results

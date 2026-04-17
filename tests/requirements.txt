@@ -1,0 +1,20 @@
+# 自动驾驶模块测试框架依赖
+
+# 测试框架
+pytest>=7.0.0
+pytest-cov>=4.0.0
+pytest-html>=3.2.0
+pytest-xdist>=3.0.0
+
+# 数据处理
+numpy>=1.21.0
+
+# 代码质量
+flake8>=5.0.0
+black>=22.0.0
+
+# 类型检查
+mypy>=0.990
+
+# 文档生成
+sphinx>=5.0.0

@@ -1,0 +1,275 @@
+# =============================================================================
+# 障碍物感知模块配置文件
+# Object Detection Module Configuration
+# =============================================================================
+
+# BEV特征配置
+bev:
+  channels: 256
+  height: 200
+  width: 200
+  # BEV空间范围 (米)
+  range:
+    x: [-50, 50]  # 前后范围
+    y: [-50, 50]  # 左右范围
+    z: [-5, 3]    # 高度范围
+
+# 时序配置
+temporal:
+  num_frames: 8          # 历史帧数
+  num_future_frames: 6   # 未来预测帧数
+  frame_interval: 0.5    # 帧间隔(秒)
+
+# Transformer配置
+transformer:
+  d_model: 256
+  nhead: 8
+  num_encoder_layers: 6
+  num_decoder_layers: 6
+  dim_feedforward: 1024
+  dropout: 0.1
+  activation: "relu"
+
+# 检测头配置
+detection:
+  num_classes: 10        # nuScenes类别数
+  num_queries: 300       # 查询数量
+  num_sizes: 10          # 尺寸聚类数
+  num_rotations: 12      # 旋转角度离散数
+  
+  # 热图配置
+  heatmap:
+    sigma: 2.0           # 高斯核标准差
+    threshold: 0.3       # 峰值阈值
+    topk: 100            # 最大检测数
+  
+  # NMS配置
+  nms:
+    iou_threshold: 0.5
+    score_threshold: 0.3
+
+# 3D检测配置
+3d_detection:
+  # 位置编码
+  pos_encoding:
+    type: "sine"
+    temperature: 10000
+    normalize: true
+  
+  # 尺寸先验 (nuScenes数据集统计)
+  size_priors:
+    car: [1.95, 4.53, 1.68]
+    truck: [2.58, 6.94, 2.73]
+    bus: [2.94, 10.49, 3.47]
+    trailer: [2.58, 13.37, 3.67]
+    construction_vehicle: [2.83, 6.52, 3.11]
+    pedestrian: [0.67, 0.73, 1.77]
+    motorcycle: [0.77, 2.11, 1.46]
+    bicycle: [0.63, 1.76, 1.44]
+    traffic_cone: [0.41, 0.41, 1.08]
+    barrier: [0.40, 2.48, 1.08]
+
+# 占据网络配置
+occupancy:
+  depth_dim: 32          # 深度维度
+  voxel_size: 0.5        # 体素大小(米)
+  
+  # 语义占据
+  semantic_occupancy:
+    enabled: true
+    num_classes: 10
+  
+  # 占用概率阈值
+  occupancy_threshold: 0.5
+
+# 行人姿态配置
+pedestrian_pose:
+  num_keypoints: 18      # 关键点数量
+  keypoint_names:
+    - "nose"
+    - "left_eye"
+    - "right_eye"
+    - "left_ear"
+    - "right_ear"
+    - "left_shoulder"
+    - "right_shoulder"
+    - "left_elbow"
+    - "right_elbow"
+    - "left_wrist"
+    - "right_wrist"
+    - "left_hip"
+    - "right_hip"
+    - "left_knee"
+    - "right_knee"
+    - "left_ankle"
+    - "right_ankle"
+    - "neck"
+
+# 形状网格配置
+shape_mesh:
+  resolution: 32         # 网格分辨率
+  mesh_type: "voxel"     # 网格类型: voxel, point_cloud, mesh
+  
+  # 网格输出
+  output:
+    vertices: true
+    faces: true
+    normals: true
+
+# 轨迹预测配置
+trajectory_prediction:
+  num_modes: 6           # 预测模式数
+  num_points: 12         # 轨迹点数
+  time_horizon: 6.0      # 预测时间范围(秒)
+  
+  # 轨迹约束
+  constraints:
+    max_velocity: 30.0   # 最大速度 (m/s)
+    max_acceleration: 5.0  # 最大加速度 (m/s^2)
+    max_yaw_rate: 0.5    # 最大偏航率 (rad/s)
+
+# 类别定义 (nuScenes)
+classes:
+  names:
+    - "car"
+    - "truck"
+    - "bus"
+    - "trailer"
+    - "construction_vehicle"
+    - "pedestrian"
+    - "motorcycle"
+    - "bicycle"
+    - "traffic_cone"
+    - "barrier"
+  
+  # 类别属性
+  attributes:
+    vehicle:
+      - "vehicle.moving"
+      - "vehicle.parked"
+      - "vehicle.stopped"
+      - "vehicle.light.on"
+      - "vehicle.light.off"
+      - "vehicle.light.blinking"
+    
+    pedestrian:
+      - "pedestrian.moving"
+      - "pedestrian.standing"
+      - "pedestrian.sitting"
+      - "pedestrian.lying_down"
+    
+    cycle:
+      - "cycle.with_rider"
+      - "cycle.without_rider"
+
+# 训练和推理配置
+training:
+  # 优化器
+  optimizer:
+    type: "AdamW"
+    lr: 0.0001
+    weight_decay: 0.01
+    betas: [0.9, 0.999]
+  
+  # 学习率调度
+  scheduler:
+    type: "StepLR"
+    step_size: 10
+    gamma: 0.1
+  
+  # 损失权重
+  loss_weights:
+    heatmap: 1.0
+    classification: 1.0
+    position: 1.0
+    size: 1.0
+    rotation: 1.0
+    velocity: 0.5
+    acceleration: 0.5
+    occupancy: 0.5
+    trajectory: 1.0
+    pose: 0.5
+  
+  # 数据增强
+  augmentation:
+    enabled: true
+    flip: true
+    rotate: true
+    scale: true
+    translate: true
+
+inference:
+  # 批处理大小
+  batch_size: 1
+  
+  # 后处理
+  post_process:
+    score_threshold: 0.3
+    nms_threshold: 0.5
+    max_detections: 300
+  
+  # 多帧融合
+  temporal_fusion:
+    enabled: true
+    fusion_method: "attention"
+
+# nuScenes数据集配置
+nuscenes:
+  # 数据集路径
+  data_root: "./data/nuscenes"
+  version: "v1.0-trainval"
+  
+  # 传感器配置
+  sensors:
+    cameras:
+      - "CAM_FRONT"
+      - "CAM_FRONT_LEFT"
+      - "CAM_FRONT_RIGHT"
+      - "CAM_BACK"
+      - "CAM_BACK_LEFT"
+      - "CAM_BACK_RIGHT"
+    lidar: "LIDAR_TOP"
+  
+  # 坐标系
+  coordinate_system:
+    lidar_frame: "lidar"
+    ego_frame: "ego"
+    global_frame: "global"
+  
+  # 评估配置
+  evaluation:
+    distance_thresholds: [0.5, 1.0, 2.0, 4.0]
+    classes: ["car", "pedestrian", "cyclist"]
+
+# 模型保存和加载
+checkpoint:
+  save_dir: "./checkpoints/object_detection"
+  save_interval: 1
+  keep_last_n: 5
+  
+  # 预训练模型
+  pretrained:
+    enabled: false
+    path: ""
+
+# 日志配置
+logging:
+  level: "INFO"
+  log_dir: "./logs/object_detection"
+  log_interval: 50
+  
+  # TensorBoard
+  tensorboard:
+    enabled: true
+    log_dir: "./logs/tensorboard/object_detection"
+
+# 硬件配置
+hardware:
+  device: "cuda"  # cuda, cpu
+  num_gpus: 1
+  mixed_precision: true
+  
+  # 分布式训练
+  distributed:
+    enabled: false
+    backend: "nccl"

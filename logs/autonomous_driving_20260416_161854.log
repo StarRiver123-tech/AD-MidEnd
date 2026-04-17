@@ -1,0 +1,15 @@
+2026-04-16 16:18:54 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-16 16:18:54 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Initializing Autonomous Driving System
+2026-04-16 16:18:54 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-16 16:18:54 [INFO] AutonomousDriving.ConfigManager - logger.py:190: Config loaded from config/system_config.yaml
+2026-04-16 16:18:54 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Configuration loaded successfully
+2026-04-16 16:18:54 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Message bus initialized
+2026-04-16 16:18:54 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Initializing simulation mode...
+2026-04-16 16:18:54 [ERROR] AutonomousDriving.AutonomousDrivingSystem - logger.py:198: System initialization failed: 'SystemConfig' object has no attribute 'get'
+2026-04-16 16:18:54 [ERROR] AutonomousDriving.AutonomousDrivingSystem - logger.py:198: Traceback (most recent call last):
+  File "/Users/lezhao/Autonomous/autonomous_driving_mid_end/autonomous_driving bev transformer/main.py", line 152, in initialize
+    if not self._init_simulation_mode():
+  File "/Users/lezhao/Autonomous/autonomous_driving_mid_end/autonomous_driving bev transformer/main.py", line 201, in _init_simulation_mode
+    sensor_config = self._system_config.get('sensors', {})
+AttributeError: 'SystemConfig' object has no attribute 'get'
+

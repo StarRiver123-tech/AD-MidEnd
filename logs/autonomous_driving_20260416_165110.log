@@ -1,0 +1,8 @@
+2026-04-16 16:51:10 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-16 16:51:10 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Initializing Autonomous Driving System
+2026-04-16 16:51:10 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-16 16:51:10 [INFO] AutonomousDriving.ConfigManager - logger.py:190: Config loaded from config/system_config.yaml
+2026-04-16 16:51:10 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Configuration loaded successfully
+2026-04-16 16:51:10 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Message bus initialized
+2026-04-16 16:51:10 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Initializing nuScenes dataset mode...
+2026-04-16 16:51:10 [ERROR] AutonomousDriving.AutonomousDrivingSystem - logger.py:198: Failed to initialize nuScenes adapter: NuScenesAdapter.__init__() got an unexpected keyword argument 'data_root'

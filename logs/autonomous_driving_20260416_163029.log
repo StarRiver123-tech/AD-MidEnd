@@ -1,0 +1,31 @@
+2026-04-16 16:30:29 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-16 16:30:29 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Initializing Autonomous Driving System
+2026-04-16 16:30:29 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-16 16:30:29 [INFO] AutonomousDriving.ConfigManager - logger.py:190: Config loaded from config/system_config.yaml
+2026-04-16 16:30:29 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Configuration loaded successfully
+2026-04-16 16:30:29 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Message bus initialized
+2026-04-16 16:30:29 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Initializing simulation mode...
+2026-04-16 16:30:29 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Simulation mode initialized
+2026-04-16 16:30:29 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Initializing core modules...
+2026-04-16 16:30:29 [INFO] AutonomousDriving.LaneDetector - logger.py:190: LaneDetector initialized
+2026-04-16 16:30:29 [INFO] AutonomousDriving.ObstacleDetector - logger.py:190: ObstacleDetector initialized
+2026-04-16 16:30:29 [INFO] AutonomousDriving.OccupancyNetwork - logger.py:190: OccupancyNetwork initialized: grid_size=500x300, resolution=0.2m
+2026-04-16 16:30:29 [INFO] AutonomousDriving.PerceptionModule - logger.py:190: PerceptionModule initialized
+2026-04-16 16:30:29 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Perception module initialized
+2026-04-16 16:30:29 [INFO] AutonomousDriving.BehaviorPlanner - logger.py:190: BehaviorPlanner initialized
+2026-04-16 16:30:29 [INFO] AutonomousDriving.TrajectoryGenerator - logger.py:190: TrajectoryGenerator initialized: num_trajectories=50, time_horizon=8.0s
+2026-04-16 16:30:29 [INFO] AutonomousDriving.TrajectoryOptimizer - logger.py:190: TrajectoryOptimizer initialized
+2026-04-16 16:30:29 [INFO] AutonomousDriving.PlanningModule - logger.py:190: PlanningModule initialized
+2026-04-16 16:30:29 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Planning module initialized
+2026-04-16 16:30:30 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Visualization initialized
+2026-04-16 16:30:30 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-16 16:30:30 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: System initialization completed successfully
+2026-04-16 16:30:30 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-16 16:30:30 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-16 16:30:30 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Starting Autonomous Driving System
+2026-04-16 16:30:30 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-16 16:30:30 [INFO] AutonomousDriving.PerceptionModule - logger.py:190: PerceptionModule started
+2026-04-16 16:30:30 [INFO] AutonomousDriving.PlanningModule - logger.py:190: PlanningModule started
+2026-04-16 16:30:30 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: System started successfully
+2026-04-16 16:30:30 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Entering main loop...
+2026-04-16 16:30:30 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Running with visualization

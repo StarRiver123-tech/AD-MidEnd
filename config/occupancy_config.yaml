@@ -1,0 +1,263 @@
+# Occupancy Network Configuration
+# ===============================
+# Configuration for 3D Occupancy Prediction Network
+
+# Model Architecture Settings
+model:
+  name: "OccupancyNetwork"
+  version: "1.0.0"
+  
+  # Input Settings
+  input:
+    num_cameras: 6  # Number of surround-view cameras
+    img_height: 900
+    img_width: 1600
+    num_classes: 17  # nuScenes classes
+    
+  # BEV (Bird's Eye View) Settings
+  bev:
+    height: 200  # Y dimension (meters / resolution)
+    width: 200   # X dimension
+    z: 16        # Height dimension (Z)
+    resolution: 0.5  # meters per pixel (0.5m = 200x200 covers 100m x 100m)
+    
+    # BEV coordinate system
+    # X: [-50m, 50m] (width direction)
+    # Y: [-50m, 50m] (length direction, forward)
+    # Z: [-5m, 3m] (height direction)
+    x_range: [-50.0, 50.0]
+    y_range: [-50.0, 50.0]
+    z_range: [-5.0, 3.0]
+    
+  # Feature Dimensions
+  features:
+    backbone_dim: 256
+    bev_dim: 256
+    hidden_dim: 256
+    fpn_dim: 256
+    
+  # Backbone Settings (RegNet)
+  backbone:
+    type: "RegNet"
+    variant: "regnet_y_3_2gf"
+    pretrained: true
+    freeze_stages: -1  # -1 means no freezing
+    
+  # BiFPN Settings
+  bifpn:
+    num_blocks: 3
+    num_levels: 4
+    use_separable_conv: true
+    
+  # BEV Encoder Settings
+  bev_encoder:
+    use_deformable_attention: true
+    num_heads: 8
+    num_levels: 1
+    num_points: 4
+    dropout: 0.1
+    
+  # Temporal Alignment Settings
+  temporal:
+    use_temporal: true
+    num_frames: 4  # Number of temporal frames to use
+    max_history: 3  # Maximum history frames to store
+    use_ego_motion: true
+    
+  # Deconvolution Upsampler
+  upsampler:
+    num_blocks: 3
+    upsample_factor: 8
+    
+  # Output Heads
+  heads:
+    occupancy:
+      use_continuous_prob: true
+      threshold: 0.5
+      
+    flow:
+      predict_velocity: true
+      predict_acceleration: true
+      predict_dynamic_mask: true
+      
+    shape:
+      sub_voxel_size: 4  # 4x4x4 sub-voxels per voxel
+      predict_normals: true
+      
+    semantics:
+      use_continuous_semantics: true
+      ignore_index: 255
+
+# Training Settings
+training:
+  batch_size: 4
+  num_epochs: 100
+  num_workers: 8
+  
+  # Optimizer
+  optimizer:
+    type: "AdamW"
+    lr: 0.0001
+    weight_decay: 0.01
+    
+  # Scheduler
+  scheduler:
+    type: "CosineAnnealingLR"
+    T_max: 100
+    eta_min: 0.000001
+    
+  # Loss Weights
+  losses:
+    occupancy:
+      weight: 1.0
+      type: "FocalLoss"
+      gamma: 2.0
+      alpha: 0.25
+      
+    flow:
+      velocity_weight: 0.5
+      acceleration_weight: 0.2
+      dynamic_weight: 0.3
+      
+    semantics:
+      weight: 1.0
+      type: "CrossEntropyLoss"
+      ignore_index: 255
+      
+    shape:
+      sub_voxel_weight: 0.3
+      normal_weight: 0.2
+
+# Data Settings
+data:
+  # nuScenes Dataset
+  dataset: "nuScenes"
+  data_root: "./data/nuscenes"
+  ann_file: "./data/nuscenes/annotations.json"
+  
+  # Camera Settings
+  cameras:
+    - "CAM_FRONT"
+    - "CAM_FRONT_LEFT"
+    - "CAM_FRONT_RIGHT"
+    - "CAM_BACK"
+    - "CAM_BACK_LEFT"
+    - "CAM_BACK_RIGHT"
+    
+  # Class Names (nuScenes)
+  class_names:
+    - "car"
+    - "truck"
+    - "trailer"
+    - "bus"
+    - "construction_vehicle"
+    - "bicycle"
+    - "motorcycle"
+    - "pedestrian"
+    - "traffic_cone"
+    - "barrier"
+    - "driveable_surface"
+    - "other_flat"
+    - "sidewalk"
+    - "terrain"
+    - "manmade"
+    - "vegetation"
+    - "ignore"
+    
+  # Class Colors for Visualization (RGB)
+  class_colors:
+    car: [255, 158, 0]
+    truck: [255, 99, 71]
+    trailer: [255, 69, 0]
+    bus: [255, 215, 0]
+    construction_vehicle: [255, 140, 0]
+    bicycle: [0, 255, 255]
+    motorcycle: [0, 206, 209]
+    pedestrian: [255, 192, 203]
+    traffic_cone: [255, 255, 0]
+    barrier: [128, 128, 128]
+    driveable_surface: [0, 128, 0]
+    other_flat: [128, 128, 0]
+    sidewalk: [192, 192, 192]
+    terrain: [107, 142, 35]
+    manmade: [255, 255, 255]
+    vegetation: [34, 139, 34]
+    ignore: [0, 0, 0]
+
+# Evaluation Settings
+evaluation:
+  metrics:
+    - "IoU"
+    - "mIoU"
+    - "Precision"
+    - "Recall"
+    - "F1"
+    
+  iou_thresholds:
+    - 0.5
+    - 0.7
+    
+  # Evaluation range
+  eval_range: 50.0  # meters
+
+# Visualization Settings
+visualization:
+  bev_size: [800, 800]
+  voxel_size: 0.5
+  point_size: 2
+  
+  # Output formats
+  save_occupancy_grid: true
+  save_point_cloud: true
+  save_bev_image: true
+  
+  # Camera for visualization
+  camera_positions:
+    - [50, -50, 100]  # Top-down view
+    - [50, 0, 20]     # Front view
+    - [0, 50, 20]     # Side view
+
+# Inference Settings
+inference:
+  batch_size: 1
+  device: "cuda"  # or "cpu"
+  fp16: true  # Use mixed precision
+  
+  # Post-processing
+  occupancy_threshold: 0.5
+  nms_threshold: 0.5
+  min_voxel_size: 1
+  
+  # Temporal settings
+  use_temporal_buffer: true
+  buffer_size: 4
+
+# Logging Settings
+logging:
+  log_dir: "./logs/occupancy"
+  checkpoint_dir: "./checkpoints/occupancy"
+  log_interval: 50  # iterations
+  save_interval: 1  # epochs
+  
+  # TensorBoard
+  use_tensorboard: true
+  
+  # Wandb
+  use_wandb: false
+  wandb_project: "occupancy_network"
+
+# Export Settings
+export:
+  onnx:
+    enabled: true
+    opset_version: 11
+    dynamic_axes: true
+    
+  tensorrt:
+    enabled: true
+    fp16: true
+    max_batch_size: 4
+    
+  torchscript:
+    enabled: true
+    optimize_for_mobile: false

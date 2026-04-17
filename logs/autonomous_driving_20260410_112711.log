@@ -1,0 +1,18 @@
+2026-04-10 11:27:11 [ERROR] AutonomousDriving.ConfigManager - logger.py:193: Failed to load config: expected '<document start>', but found '<scalar>'
+  in "config/system_config.yaml", line 1, column 3
+2026-04-10 11:27:11 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-10 11:27:11 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Testing Perception Module
+2026-04-10 11:27:11 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-10 11:27:12 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] perception.import: All perception modules imported successfully
+2026-04-10 11:27:12 [ERROR] AutonomousDriving.PerceptionModule - logger.py:193: Initialization failed: 'NoneType' object has no attribute 'get'
+2026-04-10 11:27:12 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [FAIL] perception.initialization: Initialization failed
+2026-04-10 11:27:12 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-10 11:27:12 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Test Summary
+2026-04-10 11:27:12 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-10 11:27:12 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Total tests: 2
+2026-04-10 11:27:12 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Passed: 1
+2026-04-10 11:27:12 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Failed: 1
+2026-04-10 11:27:12 [INFO] AutonomousDriving.ModuleTester - logger.py:185: 
+Failed tests:
+2026-04-10 11:27:12 [INFO] AutonomousDriving.ModuleTester - logger.py:185:   - perception.initialization: Initialization failed
+2026-04-10 11:27:12 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================

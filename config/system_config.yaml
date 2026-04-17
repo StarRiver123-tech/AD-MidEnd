@@ -1,0 +1,370 @@
+# =============================================================================
+# 自动驾驶系统 - 主配置文件
+# =============================================================================
+# 此文件包含自动驾驶系统的所有配置参数
+# 支持多种运行模式：仿真模式、nuScenes数据集模式、实车模式
+# =============================================================================
+
+# =============================================================================
+# 系统基础配置
+# =============================================================================
+system:
+  name: "Autonomous Driving System"
+  version: "1.0.0"
+  
+  # 运行模式: simulation | nuscenes | real_vehicle
+  mode: "simulation"
+  
+  # 日志配置
+  log_level: "INFO"  # DEBUG | INFO | WARNING | ERROR
+  log_dir: "logs"
+  log_to_file: true
+  log_to_console: true
+  
+  # 系统循环频率 (Hz)
+  main_loop_frequency: 50
+  
+  # 数据记录
+  record_data: false
+  record_dir: "records"
+  
+  # 性能监控
+  enable_profiling: false
+  profiling_interval_sec: 10
+
+# =============================================================================
+# 模块配置
+# =============================================================================
+modules:
+  # 感知模块配置
+  perception:
+    enabled: true
+    execution_frequency: 10  # Hz
+    
+    algorithm_params:
+      # 车道线检测配置
+      lane_detection:
+        enabled: true
+        model_path: "models/lane_detection"
+        confidence_threshold: 0.5
+        min_line_length: 50
+        max_line_gap: 10
+      
+      # 障碍物检测配置
+      obstacle_detection:
+        enabled: true
+        model_path: "models/obstacle_detection"
+        confidence_threshold: 0.6
+        nms_threshold: 0.4
+        input_size: [640, 384]
+        classes: ["car", "truck", "bus", "pedestrian", "cyclist", "motorcycle"]
+      
+      # Occupancy网络配置
+      occupancy:
+        enabled: true
+        model_path: "models/occupancy"
+        grid_resolution: 0.2  # meters per cell
+        grid_size: [100, 100]  # [width, height] in cells
+        height_range: [-2.0, 4.0]  # meters
+
+  # 规划模块配置
+  planning:
+    enabled: true
+    execution_frequency: 10  # Hz
+    
+    algorithm_params:
+      # 行为规划配置
+      behavior_planning:
+        enabled: true
+        planning_horizon: 100.0  # meters
+        reaction_time: 1.0  # seconds
+        safe_distance: 3.0  # meters
+      
+      # 轨迹生成配置
+      trajectory_generation:
+        enabled: true
+        time_horizon: 8.0  # seconds
+        num_trajectories: 50
+        lateral_samples: 7
+        longitudinal_samples: 5
+        dt: 0.1  # time step
+      
+      # 轨迹优化配置
+      trajectory_optimization:
+        enabled: true
+        max_iterations: 100
+        convergence_threshold: 1e-4
+        weights:
+          smoothness: 1.0
+          comfort: 0.5
+          efficiency: 0.3
+          safety: 2.0
+
+  # 控制模块配置
+  control:
+    enabled: true
+    execution_frequency: 50  # Hz
+    
+    algorithm_params:
+      # 横向控制 (Stanley控制器)
+      lateral_control:
+        k_gain: 1.0
+        softening_constant: 1.0
+      
+      # 纵向控制 (PID控制器)
+      longitudinal_control:
+        kp: 0.5
+        ki: 0.1
+        kd: 0.05
+        max_acceleration: 3.0  # m/s^2
+        max_deceleration: 5.0  # m/s^2
+
+  # 可视化模块配置
+  visualization:
+    enabled: true
+    update_frequency: 30  # Hz
+    
+    display_options:
+      show_grid: true
+      show_ego: true
+      show_obstacles: true
+      show_lane_lines: true
+      show_occupancy: true
+      show_trajectories: true
+      show_behavior: true
+      show_sensor_data: true
+    
+    # BEV显示范围
+    bev_range:
+      x_min: -50.0
+      x_max: 100.0
+      y_min: -30.0
+      y_max: 30.0
+      resolution: 0.2
+
+# =============================================================================
+# 传感器配置
+# =============================================================================
+sensors:
+  # 摄像头配置
+  cameras:
+    front_camera:
+      enabled: true
+      type: "camera"
+      resolution: [1920, 1080]
+      fps: 30
+      fov: 90.0
+      position: [2.0, 0.0, 1.5]  # [x, y, z] relative to ego
+      orientation: [0.0, 0.0, 0.0]  # [roll, pitch, yaw]
+      interface: "gmsl"
+    
+    rear_camera:
+      enabled: true
+      type: "camera"
+      resolution: [1920, 1080]
+      fps: 30
+      fov: 100.0
+      position: [-1.0, 0.0, 1.5]
+      orientation: [0.0, 0.0, 180.0]
+      interface: "gmsl"
+    
+    left_camera:
+      enabled: true
+      type: "camera"
+      resolution: [1280, 720]
+      fps: 30
+      fov: 120.0
+      position: [0.5, 1.0, 1.2]
+      orientation: [0.0, 0.0, 90.0]
+      interface: "gmsl"
+    
+    right_camera:
+      enabled: true
+      type: "camera"
+      resolution: [1280, 720]
+      fps: 30
+      fov: 120.0
+      position: [0.5, -1.0, 1.2]
+      orientation: [0.0, 0.0, -90.0]
+      interface: "gmsl"
+
+  # LiDAR配置
+  lidars:
+    main_lidar:
+      enabled: true
+      type: "lidar"
+      model: "pandar64"
+      channels: 64
+      range: 200.0  # meters
+      frequency: 10.0  # Hz
+      points_per_second: 1152000
+      horizontal_fov: 360.0
+      vertical_fov: [-25.0, 15.0]
+      position: [0.0, 0.0, 2.0]
+      orientation: [0.0, 0.0, 0.0]
+      ip: "192.168.1.201"
+      port: 2368
+
+  # 雷达配置
+  radars:
+    front_radar:
+      enabled: true
+      type: "radar"
+      model: "continental_ars430"
+      range_max: 250.0  # meters
+      azimuth_fov: 60.0
+      elevation_fov: 15.0
+      position: [3.5, 0.0, 0.5]
+      orientation: [0.0, 0.0, 0.0]
+      can_channel: 0
+      can_id: "0x200"
+    
+    rear_radar:
+      enabled: true
+      type: "radar"
+      model: "continental_ars430"
+      range_max: 100.0
+      azimuth_fov: 60.0
+      elevation_fov: 15.0
+      position: [-1.0, 0.0, 0.5]
+      orientation: [0.0, 0.0, 180.0]
+      can_channel: 1
+      can_id: "0x210"
+
+  # 超声波传感器配置
+  ultrasonics:
+    front_left:
+      enabled: true
+      type: "ultrasonic"
+      range: [0.15, 5.0]  # [min, max] meters
+      position: [3.8, 0.8, 0.3]
+      orientation: [0.0, 0.0, 30.0]
+    
+    front_right:
+      enabled: true
+      type: "ultrasonic"
+      range: [0.15, 5.0]
+      position: [3.8, -0.8, 0.3]
+      orientation: [0.0, 0.0, -30.0]
+    
+    rear_left:
+      enabled: true
+      type: "ultrasonic"
+      range: [0.15, 5.0]
+      position: [-1.2, 0.8, 0.3]
+      orientation: [0.0, 0.0, 150.0]
+    
+    rear_right:
+      enabled: true
+      type: "ultrasonic"
+      range: [0.15, 5.0]
+      position: [-1.2, -0.8, 0.3]
+      orientation: [0.0, 0.0, -150.0]
+
+  # CAN总线配置
+  can_bus:
+    vehicle_can:
+      enabled: true
+      channel: "can0"
+      interface: "socketcan"
+      bitrate: 500000
+
+  # 传感器同步配置
+  sync:
+    mode: "software"  # software | hardware
+    master_clock: "lidar"
+    time_tolerance_ms: 10.0
+    sync_period_ms: 100.0
+
+# =============================================================================
+# nuScenes数据集配置
+# =============================================================================
+nuscenes:
+  # 数据集路径
+  data_root: "data/nuscenes"
+  version: "v1.0-mini"
+  
+  # 数据分割
+  split: "train"  # train | val | test | mini_train | mini_val
+  
+  # 场景选择
+  scene_tokens: []  # 空列表表示使用所有场景
+  
+  # 数据加载配置
+  loading:
+    load_cameras: true
+    load_lidar: true
+    load_radar: true
+    load_annotations: true
+    load_map: true
+  
+  # 坐标系
+  coordinate_system: "ego"  # ego | global | sensor
+  
+  # 数据预处理
+  preprocessing:
+    normalize_images: true
+    voxelize_lidar: false
+    filter_annotations: true
+
+# =============================================================================
+# 车辆参数配置
+# =============================================================================
+vehicle:
+  # 车辆尺寸 (meters)
+  length: 4.5
+  width: 2.0
+  height: 1.5
+  wheelbase: 2.8
+  
+  # 性能参数
+  max_speed: 50.0  # m/s (180 km/h)
+  max_acceleration: 3.0  # m/s^2
+  max_deceleration: 5.0  # m/s^2
+  max_steering_angle: 35.0  # degrees
+  
+  # 动力学参数
+  mass: 1500.0  # kg
+  drag_coefficient: 0.3
+  frontal_area: 2.5  # m^2
+
+# =============================================================================
+# 安全配置
+# =============================================================================
+safety:
+  # 紧急制动配置
+  emergency_brake:
+    enabled: true
+    activation_distance: 5.0  # meters
+    deceleration: 8.0  # m/s^2
+  
+  # 速度限制
+  speed_limits:
+    urban: 13.9  # m/s (50 km/h)
+    highway: 33.3  # m/s (120 km/h)
+    school_zone: 8.3  # m/s (30 km/h)
+  
+  # 故障处理
+  fault_handling:
+    max_consecutive_failures: 3
+    fallback_mode: "stop"  # stop | slow_down | manual
+
+# =============================================================================
+# 通信配置
+# =============================================================================
+communication:
+  # 消息总线配置
+  message_bus:
+    max_queue_size: 1000
+    message_timeout_ms: 100
+  
+  # 外部接口
+  external_interfaces:
+    ros:
+      enabled: false
+      master_uri: "http://localhost:11311"
+    
+    mqtt:
+      enabled: false
+      broker: "localhost"
+      port: 1883

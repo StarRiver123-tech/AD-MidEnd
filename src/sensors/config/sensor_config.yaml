@@ -1,0 +1,556 @@
+# 传感器配置文件
+# Autonomous Driving Sensor Configuration
+
+# ==================== 摄像头配置 ====================
+cameras:
+  # 前视长焦摄像头
+  front_long:
+    name: "front_long"
+    type: "camera"
+    resolution: [3840, 2160]  # 8M
+    fps: 30
+    fov: 30  # 视场角(度)
+    position: [2.0, 0.0, 1.2]  # [x, y, z] 相对于车辆中心
+    orientation: [0.0, 0.0, 0.0]  # [roll, pitch, yaw]
+    interface: "gmsl"
+    channel: 0
+    enabled: true
+    
+  # 前视广角摄像头
+  front_wide:
+    name: "front_wide"
+    type: "camera"
+    resolution: [3840, 2160]  # 8M
+    fps: 30
+    fov: 120
+    position: [2.0, 0.0, 1.1]
+    orientation: [0.0, 0.0, 0.0]
+    interface: "gmsl"
+    channel: 1
+    enabled: true
+    
+  # 后视摄像头
+  rear:
+    name: "rear"
+    type: "camera"
+    resolution: [1920, 1536]  # 3M
+    fps: 30
+    fov: 100
+    position: [-2.0, 0.0, 1.2]
+    orientation: [0.0, 0.0, 180.0]
+    interface: "gmsl"
+    channel: 2
+    enabled: true
+    
+  # 左前周视摄像头
+  left_front:
+    name: "left_front"
+    type: "camera"
+    resolution: [1920, 1536]  # 3M
+    fps: 30
+    fov: 100
+    position: [1.5, 1.0, 1.0]
+    orientation: [0.0, 0.0, 45.0]
+    interface: "gmsl"
+    channel: 3
+    enabled: true
+    
+  # 右前周视摄像头
+  right_front:
+    name: "right_front"
+    type: "camera"
+    resolution: [1920, 1536]  # 3M
+    fps: 30
+    fov: 100
+    position: [1.5, -1.0, 1.0]
+    orientation: [0.0, 0.0, -45.0]
+    interface: "gmsl"
+    channel: 4
+    enabled: true
+    
+  # 左后周视摄像头
+  left_rear:
+    name: "left_rear"
+    type: "camera"
+    resolution: [1920, 1536]  # 3M
+    fps: 30
+    fov: 100
+    position: [-1.5, 1.0, 1.0]
+    orientation: [0.0, 0.0, 135.0]
+    interface: "gmsl"
+    channel: 5
+    enabled: true
+    
+  # 右后周视摄像头
+  right_rear:
+    name: "right_rear"
+    type: "camera"
+    resolution: [1920, 1536]  # 3M
+    fps: 30
+    fov: 100
+    position: [-1.5, -1.0, 1.0]
+    orientation: [0.0, 0.0, -135.0]
+    interface: "gmsl"
+    channel: 6
+    enabled: true
+    
+  # 前环视摄像头
+  front_fisheye:
+    name: "front_fisheye"
+    type: "camera"
+    resolution: [1920, 1536]  # 3M
+    fps: 30
+    fov: 190
+    position: [2.0, 0.0, 0.8]
+    orientation: [0.0, -30.0, 0.0]
+    interface: "gmsl"
+    channel: 7
+    lens_type: "fisheye"
+    enabled: true
+    
+  # 后环视摄像头
+  rear_fisheye:
+    name: "rear_fisheye"
+    type: "camera"
+    resolution: [1920, 1536]  # 3M
+    fps: 30
+    fov: 190
+    position: [-2.0, 0.0, 0.8]
+    orientation: [0.0, -30.0, 180.0]
+    interface: "gmsl"
+    channel: 8
+    lens_type: "fisheye"
+    enabled: true
+    
+  # 左环视摄像头
+  left_fisheye:
+    name: "left_fisheye"
+    type: "camera"
+    resolution: [1920, 1536]  # 3M
+    fps: 30
+    fov: 190
+    position: [0.0, 1.0, 0.8]
+    orientation: [0.0, -30.0, 90.0]
+    interface: "gmsl"
+    channel: 9
+    lens_type: "fisheye"
+    enabled: true
+    
+  # 右环视摄像头
+  right_fisheye:
+    name: "right_fisheye"
+    type: "camera"
+    resolution: [1920, 1536]  # 3M
+    fps: 30
+    fov: 190
+    position: [0.0, -1.0, 0.8]
+    orientation: [0.0, -30.0, -90.0]
+    interface: "gmsl"
+    channel: 10
+    lens_type: "fisheye"
+    enabled: true
+
+# ==================== LiDAR配置 ====================
+lidars:
+  main_lidar:
+    name: "main_lidar"
+    type: "lidar"
+    model: "pandar64"  # 或 "velodyne_vlp32"
+    channels: 64
+    range: 200.0  # 最大探测距离(m)
+    frequency: 10  # 扫描频率(Hz)
+    points_per_second: 1152000
+    horizontal_fov: 360.0
+    vertical_fov: [-25.0, 15.0]
+    position: [0.0, 0.0, 2.0]
+    orientation: [0.0, 0.0, 0.0]
+    interface: "ethernet"
+    ip: "192.168.1.201"
+    port: 2368
+    data_port: 2369
+    enabled: true
+    
+  front_lidar:
+    name: "front_lidar"
+    type: "lidar"
+    model: "livox_mid360"
+    channels: 1
+    range: 100.0
+    frequency: 10
+    points_per_second: 240000
+    horizontal_fov: 360.0
+    vertical_fov: [-7.0, 52.0]
+    position: [2.0, 0.0, 1.5]
+    orientation: [0.0, 0.0, 0.0]
+    interface: "ethernet"
+    ip: "192.168.1.202"
+    port: 56000
+    enabled: false
+
+# ==================== 雷达配置 ====================
+radars:
+  front_radar:
+    name: "front_radar"
+    type: "radar"
+    model: "continental_ars430"
+    range: 250.0  # 最大探测距离(m)
+    azimuth_fov: 60.0
+    elevation_fov: 15.0
+    position: [3.5, 0.0, 0.5]
+    orientation: [0.0, 0.0, 0.0]
+    interface: "can"
+    can_channel: 0
+    can_id: 0x200
+    enabled: true
+    
+  left_front_radar:
+    name: "left_front_radar"
+    type: "radar"
+    model: "continental_ars430"
+    range: 100.0
+    azimuth_fov: 90.0
+    elevation_fov: 15.0
+    position: [1.5, 1.0, 0.5]
+    orientation: [0.0, 0.0, 45.0]
+    interface: "can"
+    can_channel: 0
+    can_id: 0x210
+    enabled: true
+    
+  right_front_radar:
+    name: "right_front_radar"
+    type: "radar"
+    model: "continental_ars430"
+    range: 100.0
+    azimuth_fov: 90.0
+    elevation_fov: 15.0
+    position: [1.5, -1.0, 0.5]
+    orientation: [0.0, 0.0, -45.0]
+    interface: "can"
+    can_channel: 0
+    can_id: 0x220
+    enabled: true
+    
+  left_rear_radar:
+    name: "left_rear_radar"
+    type: "radar"
+    model: "continental_ars430"
+    range: 80.0
+    azimuth_fov: 150.0
+    elevation_fov: 15.0
+    position: [-1.5, 1.0, 0.5]
+    orientation: [0.0, 0.0, 135.0]
+    interface: "can"
+    can_channel: 1
+    can_id: 0x230
+    enabled: true
+    
+  right_rear_radar:
+    name: "right_rear_radar"
+    type: "radar"
+    model: "continental_ars430"
+    range: 80.0
+    azimuth_fov: 150.0
+    elevation_fov: 15.0
+    position: [-1.5, -1.0, 0.5]
+    orientation: [0.0, 0.0, -135.0]
+    interface: "can"
+    can_channel: 1
+    can_id: 0x240
+    enabled: true
+
+# ==================== 超声波传感器配置 ====================
+ultrasonics:
+  front_left_1:
+    name: "front_left_1"
+    type: "ultrasonic"
+    range: [0.15, 5.0]  # 探测范围(m)
+    position: [3.8, 0.8, 0.3]
+    orientation: [0.0, 0.0, 20.0]
+    interface: "spi"
+    spi_channel: 0
+    enabled: true
+    
+  front_left_2:
+    name: "front_left_2"
+    type: "ultrasonic"
+    range: [0.15, 5.0]
+    position: [3.8, 0.4, 0.3]
+    orientation: [0.0, 0.0, 10.0]
+    interface: "spi"
+    spi_channel: 1
+    enabled: true
+    
+  front_right_1:
+    name: "front_right_1"
+    type: "ultrasonic"
+    range: [0.15, 5.0]
+    position: [3.8, -0.4, 0.3]
+    orientation: [0.0, 0.0, -10.0]
+    interface: "spi"
+    spi_channel: 2
+    enabled: true
+    
+  front_right_2:
+    name: "front_right_2"
+    type: "ultrasonic"
+    range: [0.15, 5.0]
+    position: [3.8, -0.8, 0.3]
+    orientation: [0.0, 0.0, -20.0]
+    interface: "spi"
+    spi_channel: 3
+    enabled: true
+    
+  rear_left_1:
+    name: "rear_left_1"
+    type: "ultrasonic"
+    range: [0.15, 5.0]
+    position: [-3.8, 0.8, 0.3]
+    orientation: [0.0, 0.0, 160.0]
+    interface: "spi"
+    spi_channel: 4
+    enabled: true
+    
+  rear_left_2:
+    name: "rear_left_2"
+    type: "ultrasonic"
+    range: [0.15, 5.0]
+    position: [-3.8, 0.4, 0.3]
+    orientation: [0.0, 0.0, 170.0]
+    interface: "spi"
+    spi_channel: 5
+    enabled: true
+    
+  rear_right_1:
+    name: "rear_right_1"
+    type: "ultrasonic"
+    range: [0.15, 5.0]
+    position: [-3.8, -0.4, 0.3]
+    orientation: [0.0, 0.0, -170.0]
+    interface: "spi"
+    spi_channel: 6
+    enabled: true
+    
+  rear_right_2:
+    name: "rear_right_2"
+    type: "ultrasonic"
+    range: [0.15, 5.0]
+    position: [-3.8, -0.8, 0.3]
+    orientation: [0.0, 0.0, -160.0]
+    interface: "spi"
+    spi_channel: 7
+    enabled: true
+    
+  left_front:
+    name: "left_front"
+    type: "ultrasonic"
+    range: [0.15, 5.0]
+    position: [2.0, 1.0, 0.3]
+    orientation: [0.0, 0.0, 90.0]
+    interface: "spi"
+    spi_channel: 8
+    enabled: true
+    
+  left_rear:
+    name: "left_rear"
+    type: "ultrasonic"
+    range: [0.15, 5.0]
+    position: [-2.0, 1.0, 0.3]
+    orientation: [0.0, 0.0, 90.0]
+    interface: "spi"
+    spi_channel: 9
+    enabled: true
+    
+  right_front:
+    name: "right_front"
+    type: "ultrasonic"
+    range: [0.15, 5.0]
+    position: [2.0, -1.0, 0.3]
+    orientation: [0.0, 0.0, -90.0]
+    interface: "spi"
+    spi_channel: 10
+    enabled: true
+    
+  right_rear:
+    name: "right_rear"
+    type: "ultrasonic"
+    range: [0.15, 5.0]
+    position: [-2.0, -1.0, 0.3]
+    orientation: [0.0, 0.0, -90.0]
+    interface: "spi"
+    spi_channel: 11
+    enabled: true
+
+# ==================== CAN总线配置 ====================
+can_bus:
+  channel_0:
+    name: "can0"
+    interface: "socketcan"
+    channel: "can0"
+    bitrate: 500000
+    enabled: true
+    
+  channel_1:
+    name: "can1"
+    interface: "socketcan"
+    channel: "can1"
+    bitrate: 500000
+    enabled: true
+
+# ==================== 整车信息配置 ====================
+vehicle:
+  # 车辆尺寸
+  dimensions:
+    length: 4.8  # 车长(m)
+    width: 1.9   # 车宽(m)
+    height: 1.5  # 车高(m)
+    wheelbase: 2.9  # 轴距(m)
+    
+  # 车辆动力学参数
+  dynamics:
+    max_speed: 50.0  # 最大速度(m/s)
+    max_acceleration: 5.0  # 最大加速度(m/s^2)
+    max_deceleration: 8.0  # 最大减速度(m/s^2)
+    max_steering_angle: 30.0  # 最大转向角(度)
+    
+  # CAN信号配置
+  can_signals:
+    vehicle_speed:
+      can_id: 0x130
+      start_bit: 0
+      length: 16
+      scale: 0.01
+      offset: 0
+      unit: "m/s"
+      
+    steering_angle:
+      can_id: 0x131
+      start_bit: 0
+      length: 16
+      scale: 0.1
+      offset: -540.0
+      unit: "deg"
+      
+    yaw_rate:
+      can_id: 0x132
+      start_bit: 0
+      length: 16
+      scale: 0.01
+      offset: -327.68
+      unit: "deg/s"
+      
+    longitudinal_accel:
+      can_id: 0x133
+      start_bit: 0
+      length: 16
+      scale: 0.01
+      offset: -320.0
+      unit: "m/s^2"
+      
+    lateral_accel:
+      can_id: 0x134
+      start_bit: 0
+      length: 16
+      scale: 0.01
+      offset: -320.0
+      unit: "m/s^2"
+      
+    gear_position:
+      can_id: 0x135
+      start_bit: 0
+      length: 3
+      scale: 1
+      offset: 0
+      unit: "enum"
+
+# ==================== 座舱通信配置 ====================
+cockpit:
+  interface: "ethernet"
+  ip: "192.168.2.100"
+  port: 8000
+  protocol: "tcp"
+  enabled: true
+
+# ==================== 数据同步配置 ====================
+sync:
+  # 同步模式: "software" | "hardware" | "hybrid"
+  mode: "software"
+  
+  # 主时钟源
+  master_clock: "lidar"  # lidar | gps | ptp
+  
+  # 时间容差(ms)
+  time_tolerance: 10
+  
+  # 同步周期(ms)
+  sync_period: 100
+  
+  # 传感器同步组
+  sync_groups:
+    perception_group:
+      - "front_long"
+      - "front_wide"
+      - "main_lidar"
+      - "front_radar"
+      
+    surround_group:
+      - "left_front"
+      - "right_front"
+      - "left_rear"
+      - "right_rear"
+      - "left_front_radar"
+      - "right_front_radar"
+      - "left_rear_radar"
+      - "right_rear_radar"
+      
+    parking_group:
+      - "front_fisheye"
+      - "rear_fisheye"
+      - "left_fisheye"
+      - "right_fisheye"
+      - "ultrasonics"
+
+# ==================== 数据预处理配置 ====================
+preprocessing:
+  # 图像预处理
+  image:
+    resize: [1920, 1080]  # 目标分辨率
+    normalize: true
+    mean: [0.485, 0.456, 0.406]
+    std: [0.229, 0.224, 0.225]
+    color_space: "rgb"
+    
+  # 点云预处理
+  pointcloud:
+    range_filter: [0.3, 200.0]  # 距离过滤范围(m)
+    voxel_size: 0.1  # 体素大小(m)
+    max_points: 100000
+    
+  # 雷达预处理
+  radar:
+    range_filter: [0.5, 250.0]
+    velocity_filter: [-50.0, 50.0]
+    
+  # 超声波预处理
+  ultrasonic:
+    median_filter_size: 3
+    outlier_threshold: 0.5
+
+# ==================== 仿真配置 ====================
+simulation:
+  enabled: false
+  dataset: "nuscenes"
+  data_root: "/data/nuscenes"
+  version: "v1.0-trainval"
+  
+  # 仿真传感器映射
+  sensor_mapping:
+    front_long: "CAM_FRONT"
+    front_wide: "CAM_FRONT_LEFT"
+    rear: "CAM_BACK"
+    left_front: "CAM_FRONT_LEFT"
+    right_front: "CAM_FRONT_RIGHT"
+    left_rear: "CAM_BACK_LEFT"
+    right_rear: "CAM_BACK_RIGHT"
+    main_lidar: "LIDAR_TOP"
+    front_radar: "RADAR_FRONT"

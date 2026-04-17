@@ -1,0 +1,31 @@
+2026-04-16 14:52:23 [INFO] AutonomousDriving.ConfigManager - logger.py:185: Config loaded from config/system_config.yaml
+2026-04-16 14:52:23 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 14:52:23 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Testing Planning Module
+2026-04-16 14:52:23 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 14:52:24 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] planning.import: All planning modules imported successfully
+2026-04-16 14:52:24 [INFO] AutonomousDriving.BehaviorPlanner - logger.py:185: BehaviorPlanner initialized
+2026-04-16 14:52:24 [INFO] AutonomousDriving.TrajectoryGenerator - logger.py:185: TrajectoryGenerator initialized: num_trajectories=50, time_horizon=8.0s
+2026-04-16 14:52:24 [INFO] AutonomousDriving.TrajectoryOptimizer - logger.py:185: TrajectoryOptimizer initialized
+2026-04-16 14:52:24 [INFO] AutonomousDriving.PlanningModule - logger.py:185: PlanningModule initialized
+2026-04-16 14:52:24 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] planning.initialization: Planning module initialized
+2026-04-16 14:52:24 [INFO] AutonomousDriving.BehaviorPlanner - logger.py:185: BehaviorPlanner initialized
+2026-04-16 14:52:24 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] planning.behavior_planning: Behavior: CRUISE, Cruising at target speed
+2026-04-16 14:52:24 [INFO] AutonomousDriving.TrajectoryGenerator - logger.py:185: TrajectoryGenerator initialized: num_trajectories=5, time_horizon=8.0s
+2026-04-16 14:52:24 [ERROR] AutonomousDriving.ModuleTester - logger.py:193: Planning test failed: type object 'BehaviorType' has no attribute 'LANE_FOLLOW'
+2026-04-16 14:52:24 [ERROR] AutonomousDriving.ModuleTester - logger.py:193: Traceback (most recent call last):
+  File "/mnt/okcomputer/output/autonomous_driving/test_module.py", line 302, in test_planning
+    behavior_type=BehaviorType.LANE_FOLLOW,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'BehaviorType' has no attribute 'LANE_FOLLOW'
+
+2026-04-16 14:52:24 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [FAIL] planning.overall: type object 'BehaviorType' has no attribute 'LANE_FOLLOW'
+2026-04-16 14:52:24 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 14:52:24 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Test Summary
+2026-04-16 14:52:24 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 14:52:24 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Total tests: 4
+2026-04-16 14:52:24 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Passed: 3
+2026-04-16 14:52:24 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Failed: 1
+2026-04-16 14:52:24 [INFO] AutonomousDriving.ModuleTester - logger.py:185: 
+Failed tests:
+2026-04-16 14:52:24 [INFO] AutonomousDriving.ModuleTester - logger.py:185:   - planning.overall: type object 'BehaviorType' has no attribute 'LANE_FOLLOW'
+2026-04-16 14:52:24 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================

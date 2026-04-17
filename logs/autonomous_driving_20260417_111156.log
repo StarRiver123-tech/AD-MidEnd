@@ -1,0 +1,67 @@
+2026-04-17 11:11:56 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-17 11:11:56 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Initializing Autonomous Driving System
+2026-04-17 11:11:56 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-17 11:11:56 [INFO] AutonomousDriving.ConfigManager - logger.py:190: Config loaded from config/system_config.yaml
+2026-04-17 11:11:56 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Configuration loaded successfully
+2026-04-17 11:11:56 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Message bus initialized
+2026-04-17 11:11:56 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Initializing nuScenes dataset mode...
+2026-04-17 11:11:56 [INFO] AutonomousDriving.MessageBus - logger.py:190: MessageBus started
+2026-04-17 11:11:56 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: nuScenes adapter initialized: data/nuscenes
+2026-04-17 11:11:56 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Initializing core modules...
+2026-04-17 11:11:56 [INFO] AutonomousDriving.LaneDetector - logger.py:190: LaneDetector initialized
+2026-04-17 11:11:56 [INFO] AutonomousDriving.ObstacleDetector - logger.py:190: ObstacleDetector initialized
+2026-04-17 11:11:56 [INFO] AutonomousDriving.OccupancyNetwork - logger.py:190: OccupancyNetwork initialized: grid_size=500x300, resolution=0.2m
+2026-04-17 11:11:56 [INFO] AutonomousDriving.PerceptionModule - logger.py:190: PerceptionModule initialized
+2026-04-17 11:11:56 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Perception module initialized
+2026-04-17 11:11:56 [INFO] AutonomousDriving.BehaviorPlanner - logger.py:190: BehaviorPlanner initialized
+2026-04-17 11:11:56 [INFO] AutonomousDriving.TrajectoryGenerator - logger.py:190: TrajectoryGenerator initialized: num_trajectories=50, time_horizon=8.0s
+2026-04-17 11:11:56 [INFO] AutonomousDriving.TrajectoryOptimizer - logger.py:190: TrajectoryOptimizer initialized
+2026-04-17 11:11:56 [INFO] AutonomousDriving.PlanningModule - logger.py:190: PlanningModule initialized
+2026-04-17 11:11:56 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Planning module initialized
+2026-04-17 11:11:57 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Visualization initialized
+2026-04-17 11:11:57 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-17 11:11:57 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: System initialization completed successfully
+2026-04-17 11:11:57 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-17 11:11:57 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-17 11:11:57 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Starting Autonomous Driving System
+2026-04-17 11:11:57 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-17 11:11:57 [INFO] AutonomousDriving.PerceptionModule - logger.py:190: PerceptionModule started
+2026-04-17 11:11:57 [INFO] AutonomousDriving.PlanningModule - logger.py:190: PlanningModule started
+2026-04-17 11:11:57 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: System started successfully
+2026-04-17 11:11:57 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Entering main loop...
+2026-04-17 11:11:57 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Running nuScenes dataset processing loop
+2026-04-17 11:11:57 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Found 10 scenes
+2026-04-17 11:11:57 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Showing visualization window for nuScenes mode
+2026-04-17 11:11:57 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Processing scene 1/10: scene-0061
+2026-04-17 11:12:06 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190:   Progress: 25.6% (10/39)
+2026-04-17 11:12:15 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190:   Progress: 51.3% (20/39)
+2026-04-17 11:12:24 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190:   Progress: 76.9% (30/39)
+2026-04-17 11:12:32 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Scene scene-0061 completed
+2026-04-17 11:12:32 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Processing scene 2/10: scene-0103
+2026-04-17 11:12:40 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190:   Progress: 25.0% (10/40)
+2026-04-17 11:12:48 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190:   Progress: 50.0% (20/40)
+2026-04-17 11:12:57 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190:   Progress: 75.0% (30/40)
+2026-04-17 11:13:04 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190:   Progress: 100.0% (40/40)
+2026-04-17 11:13:04 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Scene scene-0103 completed
+2026-04-17 11:13:05 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Processing scene 3/10: scene-0553
+2026-04-17 11:13:13 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190:   Progress: 24.4% (10/41)
+2026-04-17 11:13:21 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190:   Progress: 48.8% (20/41)
+2026-04-17 11:13:30 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190:   Progress: 73.2% (30/41)
+2026-04-17 11:13:39 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190:   Progress: 97.6% (40/41)
+2026-04-17 11:13:40 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Scene scene-0553 completed
+2026-04-17 11:13:40 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Processing scene 4/10: scene-0655
+2026-04-17 11:13:49 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190:   Progress: 24.4% (10/41)
+2026-04-17 11:13:52 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-17 11:13:52 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Stopping Autonomous Driving System
+2026-04-17 11:13:52 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-17 11:13:52 [INFO] AutonomousDriving.PlanningModule - logger.py:190: PlanningModule stopped
+2026-04-17 11:13:52 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Planning module stopped
+2026-04-17 11:13:52 [INFO] AutonomousDriving.PerceptionModule - logger.py:190: PerceptionModule stopped
+2026-04-17 11:13:52 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Perception module stopped
+2026-04-17 11:13:52 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-17 11:13:52 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: Final Statistics:
+2026-04-17 11:13:52 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190:   Total runtime: 115.3 seconds
+2026-04-17 11:13:52 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190:   Total loops: 0
+2026-04-17 11:13:52 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190:   Average loop rate: 0.0 Hz
+2026-04-17 11:13:52 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: ============================================================
+2026-04-17 11:13:52 [INFO] AutonomousDriving.AutonomousDrivingSystem - logger.py:190: System stopped

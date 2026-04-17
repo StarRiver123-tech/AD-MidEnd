@@ -1,0 +1,177 @@
+# Lane Detection Configuration
+# 车道线检测网络配置文件
+
+# ==================== Model Architecture ====================
+model:
+  name: "LaneDetectionNetwork"
+  version: "1.0.0"
+  
+  # Transformer Configuration
+  d_model: 256              # 特征维度
+  num_heads: 8              # 注意力头数
+  num_encoder_layers: 6     # 编码器层数
+  d_ff: 1024                # 前馈网络维度
+  dropout: 0.1              # Dropout率
+  
+  # Lane Representation
+  num_points_per_lane: 20   # 每条车道线的点数
+  num_control_points: 10    # B样条控制点数
+  spline_degree: 3          # B样条阶数
+  
+  # Topology Prediction
+  num_topology_types: 7     # 拓扑类型数量
+  # Topology types:
+  # 0: LANE_FOLLOW - 车道跟随
+  # 1: LEFT_TURN - 左转
+  # 2: RIGHT_TURN - 右转
+  # 3: STRAIGHT - 直行
+  # 4: U_TURN - 掉头
+  # 5: MERGE - 合并
+  # 6: FORK - 分叉
+
+# ==================== BEV Encoder ====================
+bev_encoder:
+  use_bev_encoder: true
+  in_channels: 3            # 输入通道数 (RGB)
+  out_channels: 256         # 输出特征维度
+  backbone: "resnet50"      # 主干网络
+  
+  # Feature Pyramid Network
+  fpn:
+    enabled: true
+    num_levels: 4
+    out_channels: 256
+
+# ==================== Post-Processing ====================
+post_processing:
+  topology_threshold: 0.5       # 拓扑关系置信度阈值
+  fork_merge_threshold: 0.3     # 分叉/合并点置信度阈值
+  nms_threshold: 0.3            # NMS阈值
+  min_lane_length: 5.0          # 最小车道线长度(m)
+  max_lane_distance: 50.0       # 最大检测距离(m)
+
+# ==================== Training ====================
+training:
+  batch_size: 8
+  num_epochs: 100
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  
+  # Loss weights
+  loss_weights:
+    point_loss: 1.0
+    topology_loss: 0.5
+    fork_merge_loss: 0.3
+    spline_loss: 0.5
+  
+  # Optimizer
+  optimizer: "AdamW"
+  scheduler: "CosineAnnealingLR"
+  warmup_epochs: 5
+
+# ==================== Data Augmentation ====================
+data_augmentation:
+  enabled: true
+  
+  # Geometric augmentation
+  rotation_range: [-10, 10]     # 旋转角度范围(度)
+  translation_range: [-2, 2]    # 平移范围(m)
+  scale_range: [0.9, 1.1]       # 缩放范围
+  
+  # Photometric augmentation
+  brightness_range: [0.8, 1.2]
+  contrast_range: [0.8, 1.2]
+  saturation_range: [0.8, 1.2]
+
+# ==================== nuScenes Dataset ====================
+dataset:
+  name: "nuScenes"
+  root: "./data/nuscenes"
+  version: "v1.0-trainval"
+  
+  # Coordinate system
+  coordinate_system: "ego_vehicle"  # ego_vehicle, global
+  
+  # Lane categories
+  lane_categories:
+    - "solid_white"
+    - "dashed_white"
+    - "solid_yellow"
+    - "dashed_yellow"
+    - "double_solid_yellow"
+    - "double_dashed_yellow"
+    - "solid_dashed_yellow"
+    - "dashed_solid_yellow"
+  
+  # Data splits
+  train_split: "train"
+  val_split: "val"
+  test_split: "test"
+
+# ==================== Inference ====================
+inference:
+  # Input
+  input_size: [512, 512]        # [H, W]
+  
+  # Output
+  max_lanes: 20                 # 最大检测车道线数
+  
+  # Temporal fusion
+  use_temporal_fusion: true
+  temporal_window: 5            # 时序窗口大小
+  
+  # Multi-scale inference
+  multi_scale: false
+  scales: [0.5, 1.0, 2.0]
+
+# ==================== Evaluation ====================
+evaluation:
+  metrics:
+    - "mAP"                    # mean Average Precision
+    - "F1"                     # F1 score
+    - "Precision"
+    - "Recall"
+  
+  # Distance thresholds for evaluation (meters)
+  distance_thresholds: [0.5, 1.0, 2.0]
+  
+  # Topology evaluation
+  evaluate_topology: true
+  topology_metrics:
+    - "topology_accuracy"
+    - "adjacency_f1"
+
+# ==================== Visualization ====================
+visualization:
+  enabled: true
+  
+  # Colors for different lane types (RGB)
+  lane_colors:
+    solid_white: [255, 255, 255]
+    dashed_white: [200, 200, 200]
+    solid_yellow: [255, 255, 0]
+    dashed_yellow: [200, 200, 0]
+    double_solid_yellow: [255, 200, 0]
+    double_dashed_yellow: [200, 150, 0]
+  
+  # Fork/Merge point colors
+  fork_point_color: [0, 255, 0]    # Green
+  merge_point_color: [255, 0, 0]   # Red
+  
+  # Line thickness
+  line_thickness: 2
+  point_radius: 5
+
+# ==================== System ====================
+system:
+  device: "cuda"                # cuda, cpu
+  num_workers: 4
+  pin_memory: true
+  
+  # Logging
+  log_interval: 10
+  save_interval: 1000
+  
+  # Checkpointing
+  checkpoint_dir: "./checkpoints"
+  resume_from: null

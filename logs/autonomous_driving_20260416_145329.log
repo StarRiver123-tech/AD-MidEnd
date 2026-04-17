@@ -1,0 +1,27 @@
+2026-04-16 14:53:29 [INFO] AutonomousDriving.ConfigManager - logger.py:185: Config loaded from config/system_config.yaml
+2026-04-16 14:53:29 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 14:53:29 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Testing Planning Module
+2026-04-16 14:53:29 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 14:53:30 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] planning.import: All planning modules imported successfully
+2026-04-16 14:53:30 [INFO] AutonomousDriving.BehaviorPlanner - logger.py:185: BehaviorPlanner initialized
+2026-04-16 14:53:30 [INFO] AutonomousDriving.TrajectoryGenerator - logger.py:185: TrajectoryGenerator initialized: num_trajectories=50, time_horizon=8.0s
+2026-04-16 14:53:30 [INFO] AutonomousDriving.TrajectoryOptimizer - logger.py:185: TrajectoryOptimizer initialized
+2026-04-16 14:53:30 [INFO] AutonomousDriving.PlanningModule - logger.py:185: PlanningModule initialized
+2026-04-16 14:53:30 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] planning.initialization: Planning module initialized
+2026-04-16 14:53:30 [INFO] AutonomousDriving.BehaviorPlanner - logger.py:185: BehaviorPlanner initialized
+2026-04-16 14:53:30 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] planning.behavior_planning: Behavior: CRUISE, Cruising at target speed
+2026-04-16 14:53:30 [INFO] AutonomousDriving.TrajectoryGenerator - logger.py:185: TrajectoryGenerator initialized: num_trajectories=5, time_horizon=8.0s
+2026-04-16 14:53:30 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] planning.trajectory_generation: Generated 5 trajectories
+2026-04-16 14:53:30 [INFO] AutonomousDriving.TrajectoryOptimizer - logger.py:185: TrajectoryOptimizer initialized
+2026-04-16 14:53:30 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] planning.trajectory_optimization: Trajectory optimized successfully
+2026-04-16 14:53:30 [INFO] AutonomousDriving.PlanningModule - logger.py:185: PlanningModule started
+2026-04-16 14:53:30 [INFO] AutonomousDriving.PlanningModule - logger.py:185: PlanningModule stopped
+2026-04-16 14:53:30 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] planning.start_stop: Planning module started and stopped successfully
+2026-04-16 14:53:30 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] planning.get_stats: State: SHUTDOWN
+2026-04-16 14:53:30 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 14:53:30 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Test Summary
+2026-04-16 14:53:30 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 14:53:30 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Total tests: 7
+2026-04-16 14:53:30 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Passed: 7
+2026-04-16 14:53:30 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Failed: 0
+2026-04-16 14:53:30 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================

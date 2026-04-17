@@ -1,0 +1,17 @@
+2026-04-16 14:53:36 [INFO] AutonomousDriving.ConfigManager - logger.py:185: Config loaded from config/system_config.yaml
+2026-04-16 14:53:36 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 14:53:36 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Testing Sensor Module
+2026-04-16 14:53:36 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 14:53:37 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] sensor.import: All sensor modules imported successfully
+2026-04-16 14:53:38 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] sensor.manager_initialization: Sensor manager created successfully
+2026-04-16 14:53:38 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] sensor.camera_config: Camera config: [1920, 1080]@30fps
+2026-04-16 14:53:38 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] sensor.lidar_config: LiDAR config: 64ch, 200.0m range
+2026-04-16 14:53:38 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] sensor.sensor_initialization: All sensors initialized
+2026-04-16 14:53:38 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] sensor.get_status: Sensor status retrieved
+2026-04-16 14:53:38 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 14:53:38 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Test Summary
+2026-04-16 14:53:38 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 14:53:38 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Total tests: 6
+2026-04-16 14:53:38 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Passed: 6
+2026-04-16 14:53:38 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Failed: 0
+2026-04-16 14:53:38 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================

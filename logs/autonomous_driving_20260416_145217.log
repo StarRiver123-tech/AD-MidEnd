@@ -1,0 +1,25 @@
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ConfigManager - logger.py:185: Config loaded from config/system_config.yaml
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Testing Perception Module
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] perception.import: All perception modules imported successfully
+2026-04-16 14:52:17 [INFO] AutonomousDriving.LaneDetector - logger.py:185: LaneDetector initialized
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ObstacleDetector - logger.py:185: ObstacleDetector initialized
+2026-04-16 14:52:17 [INFO] AutonomousDriving.OccupancyNetwork - logger.py:185: OccupancyNetwork initialized: grid_size=500x300, resolution=0.2m
+2026-04-16 14:52:17 [INFO] AutonomousDriving.PerceptionModule - logger.py:185: PerceptionModule initialized
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] perception.initialization: Perception module initialized
+2026-04-16 14:52:17 [INFO] AutonomousDriving.LaneDetector - logger.py:185: LaneDetector initialized
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] perception.lane_detection: Detected 4 lane lines
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ObstacleDetector - logger.py:185: ObstacleDetector initialized
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] perception.obstacle_detection: Detected 0 obstacles
+2026-04-16 14:52:17 [INFO] AutonomousDriving.PerceptionModule - logger.py:185: PerceptionModule started
+2026-04-16 14:52:17 [INFO] AutonomousDriving.PerceptionModule - logger.py:185: PerceptionModule stopped
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] perception.start_stop: Perception module started and stopped successfully
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] perception.get_stats: State: SHUTDOWN
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Test Summary
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Total tests: 6
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Passed: 6
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Failed: 0
+2026-04-16 14:52:17 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================

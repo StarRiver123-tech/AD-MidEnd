@@ -1,0 +1,140 @@
+# Planning Module Configuration
+# 规划模块配置文件
+
+# ==================== Lattice Trajectory Generator ====================
+lattice:
+  # 采样参数
+  num_t_samples: 5          # 时间采样数
+  num_d_samples: 7          # 横向偏移采样数
+  num_v_samples: 5          # 速度采样数
+  
+  # 采样范围
+  t_min: 3.0                # 最小预测时间 (s)
+  t_max: 8.0                # 最大预测时间 (s)
+  d_min: -3.5               # 最小横向偏移 (m)
+  d_max: 3.5                # 最大横向偏移 (m)
+  v_min: 0.0                # 最小速度 (m/s)
+  v_max: 20.0               # 最大速度 (m/s)
+  
+  # 车辆运动学约束
+  max_acceleration: 3.0     # 最大加速度 (m/s^2)
+  max_deceleration: -5.0    # 最大减速度 (m/s^2)
+  max_curvature: 0.2        # 最大曲率 (1/m)
+  max_jerk: 5.0             # 最大加加速度 (m/s^3)
+  
+  # 安全参数
+  safe_distance: 2.0        # 安全距离 (m)
+  vehicle_width: 2.0        # 车宽 (m)
+  vehicle_length: 4.5       # 车长 (m)
+
+# ==================== Behavior Explainer ====================
+behavior:
+  # 评分权重
+  safety_weight: 0.4        # 安全性权重
+  comfort_weight: 0.2       # 舒适性权重
+  efficiency_weight: 0.2    # 效率权重
+  legality_weight: 0.2      # 合法性权重
+  
+  # 评分阈值
+  min_safety_score: 0.6     # 最小安全评分
+  min_comfort_score: 0.5    # 最小舒适评分
+  
+  # 参考参数
+  target_speed: 15.0        # 目标速度 (m/s)
+  speed_limit: 20.0         # 限速 (m/s)
+
+# ==================== Trajectory Selector ====================
+selection:
+  # 选择参数
+  num_candidates: 5         # 候选轨迹数量
+  use_preference_model: false  # 是否使用偏好模型
+  
+  # 损失函数权重
+  safety_weight: 0.4        # 安全性权重
+  comfort_weight: 0.2       # 舒适性权重
+  efficiency_weight: 0.2    # 效率权重
+  smoothness_weight: 0.1    # 平滑度权重
+  consistency_weight: 0.1   # 一致性权重
+
+# ==================== Trajectory Optimizer ====================
+optimization:
+  # 优化参数
+  optimization_method: "SLSQP"     # 优化方法
+  max_iterations: 100              # 最大迭代次数
+  convergence_tolerance: 1.0e-6    # 收敛容差
+  
+  # 运动学约束
+  max_acceleration: 3.0            # 最大加速度 (m/s^2)
+  min_acceleration: -5.0           # 最小加速度 (m/s^2)
+  max_velocity: 20.0               # 最大速度 (m/s)
+  min_velocity: 0.0                # 最小速度 (m/s)
+  max_curvature: 0.2               # 最大曲率 (1/m)
+  max_jerk: 5.0                    # 最大加加速度 (m/s^3)
+  safe_distance: 2.0               # 安全距离 (m)
+  
+  # 车辆参数
+  wheelbase: 2.8                   # 轴距 (m)
+  max_steering_angle: 0.6          # 最大转向角 (rad)
+  
+  # 优化目标权重
+  smoothness_weight: 1.0           # 平滑度权重
+  safety_weight: 10.0              # 安全性权重
+  consistency_weight: 1.0          # 一致性权重
+  efficiency_weight: 0.5           # 效率权重
+
+# ==================== nuScenes Dataset Configuration ====================
+nuscenes:
+  # 坐标系转换
+  coordinate_system: "ego"         # 坐标系: ego / global
+  
+  # 感知范围
+  perception_range: 100.0          # 感知范围 (m)
+  
+  # 地图参数
+  map_resolution: 0.1              # 地图分辨率 (m)
+  
+  # 障碍物类别映射
+  object_categories:
+    - vehicle.car
+    - vehicle.truck
+    - vehicle.bus
+    - vehicle.bicycle
+    - vehicle.motorcycle
+    - human.pedestrian
+    - movable_object.barrier
+    - movable_object.trafficcone
+  
+  # 车道属性
+  lane_attributes:
+    - driving
+    - parking
+    - sidewalk
+    - stop
+
+# ==================== Planning Parameters ====================
+planning:
+  # 规划周期
+  planning_frequency: 10           # 规划频率 (Hz)
+  planning_horizon: 8.0            # 规划时域 (s)
+  
+  # 轨迹参数
+  trajectory_resolution: 0.1       # 轨迹时间分辨率 (s)
+  min_trajectory_length: 20.0      # 最小轨迹长度 (m)
+  
+  # 行为决策
+  behavior_decision:
+    enable_lane_change: true       # 启用换道
+    enable_overtake: false         # 启用超车
+    enable_emergency_stop: true    # 启用紧急停车
+  
+  # 安全参数
+  safety:
+    emergency_braking_deceleration: -6.0   # 紧急制动减速度 (m/s^2)
+    follow_distance_factor: 2.0            # 跟车距离系数 (秒)
+    min_follow_distance: 5.0               # 最小跟车距离 (m)
+
+# ==================== Debug Configuration ====================
+debug:
+  enable_visualization: true       # 启用可视化
+  save_trajectories: false         # 保存轨迹数据
+  log_level: "INFO"                # 日志级别: DEBUG / INFO / WARNING / ERROR

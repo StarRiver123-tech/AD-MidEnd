@@ -1,0 +1,70 @@
+2026-04-16 15:10:50 [INFO] AutonomousDriving.ConfigManager - logger.py:185: Config loaded from config/system_config.yaml
+2026-04-16 15:10:50 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 15:10:50 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Testing Perception Module
+2026-04-16 15:10:50 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 15:10:50 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] perception.import: All perception modules imported successfully
+2026-04-16 15:10:50 [INFO] AutonomousDriving.LaneDetector - logger.py:185: LaneDetector initialized
+2026-04-16 15:10:50 [INFO] AutonomousDriving.ObstacleDetector - logger.py:185: ObstacleDetector initialized
+2026-04-16 15:10:50 [INFO] AutonomousDriving.OccupancyNetwork - logger.py:185: OccupancyNetwork initialized: grid_size=500x300, resolution=0.2m
+2026-04-16 15:10:50 [INFO] AutonomousDriving.PerceptionModule - logger.py:185: PerceptionModule initialized
+2026-04-16 15:10:50 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] perception.initialization: Perception module initialized
+2026-04-16 15:10:50 [INFO] AutonomousDriving.LaneDetector - logger.py:185: LaneDetector initialized
+2026-04-16 15:10:50 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] perception.lane_detection: Detected 4 lane lines
+2026-04-16 15:10:50 [INFO] AutonomousDriving.ObstacleDetector - logger.py:185: ObstacleDetector initialized
+2026-04-16 15:10:50 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] perception.obstacle_detection: Detected 0 obstacles
+2026-04-16 15:10:50 [INFO] AutonomousDriving.PerceptionModule - logger.py:185: PerceptionModule started
+2026-04-16 15:10:51 [INFO] AutonomousDriving.PerceptionModule - logger.py:185: PerceptionModule stopped
+2026-04-16 15:10:51 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] perception.start_stop: Perception module started and stopped successfully
+2026-04-16 15:10:51 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] perception.get_stats: State: SHUTDOWN
+2026-04-16 15:10:51 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 15:10:51 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Testing Planning Module
+2026-04-16 15:10:51 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 15:10:51 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] planning.import: All planning modules imported successfully
+2026-04-16 15:10:51 [INFO] AutonomousDriving.BehaviorPlanner - logger.py:185: BehaviorPlanner initialized
+2026-04-16 15:10:51 [INFO] AutonomousDriving.TrajectoryGenerator - logger.py:185: TrajectoryGenerator initialized: num_trajectories=50, time_horizon=8.0s
+2026-04-16 15:10:51 [INFO] AutonomousDriving.TrajectoryOptimizer - logger.py:185: TrajectoryOptimizer initialized
+2026-04-16 15:10:51 [INFO] AutonomousDriving.PlanningModule - logger.py:185: PlanningModule initialized
+2026-04-16 15:10:51 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] planning.initialization: Planning module initialized
+2026-04-16 15:10:51 [INFO] AutonomousDriving.BehaviorPlanner - logger.py:185: BehaviorPlanner initialized
+2026-04-16 15:10:51 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] planning.behavior_planning: Behavior: CRUISE, Cruising at target speed
+2026-04-16 15:10:51 [INFO] AutonomousDriving.TrajectoryGenerator - logger.py:185: TrajectoryGenerator initialized: num_trajectories=5, time_horizon=8.0s
+2026-04-16 15:10:51 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] planning.trajectory_generation: Generated 5 trajectories
+2026-04-16 15:10:51 [INFO] AutonomousDriving.TrajectoryOptimizer - logger.py:185: TrajectoryOptimizer initialized
+2026-04-16 15:10:51 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] planning.trajectory_optimization: Trajectory optimized successfully
+2026-04-16 15:10:51 [INFO] AutonomousDriving.PlanningModule - logger.py:185: PlanningModule started
+2026-04-16 15:10:51 [INFO] AutonomousDriving.PlanningModule - logger.py:185: PlanningModule stopped
+2026-04-16 15:10:51 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] planning.start_stop: Planning module started and stopped successfully
+2026-04-16 15:10:51 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] planning.get_stats: State: SHUTDOWN
+2026-04-16 15:10:51 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 15:10:51 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Testing Sensor Module
+2026-04-16 15:10:51 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] sensor.import: All sensor modules imported successfully
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] sensor.manager_initialization: Sensor manager created successfully
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] sensor.camera_config: Camera config: [1920, 1080]@30fps
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] sensor.lidar_config: LiDAR config: 64ch, 200.0m range
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] sensor.sensor_initialization: All sensors initialized
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [PASS] sensor.get_status: Sensor status retrieved
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Testing Visualization Module
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 15:10:52 [ERROR] AutonomousDriving.ModuleTester - logger.py:193: Visualization test failed: No module named 'PyQt5'
+2026-04-16 15:10:52 [ERROR] AutonomousDriving.ModuleTester - logger.py:193: Traceback (most recent call last):
+  File "/mnt/okcomputer/output/autonomous_driving/test_module.py", line 503, in test_visualization
+    from src.visualization.data_manager import DataManager, EgoState
+  File "/mnt/okcomputer/output/autonomous_driving/src/visualization/__init__.py", line 7, in <module>
+    from .visualizer import AutonomousDrivingVisualizer
+  File "/mnt/okcomputer/output/autonomous_driving/src/visualization/visualizer.py", line 14, in <module>
+    from PyQt5.QtWidgets import (
+ModuleNotFoundError: No module named 'PyQt5'
+
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185: [FAIL] visualization.overall: No module named 'PyQt5'
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Test Summary
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Total tests: 20
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Passed: 19
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185: Failed: 1
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185: 
+Failed tests:
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185:   - visualization.overall: No module named 'PyQt5'
+2026-04-16 15:10:52 [INFO] AutonomousDriving.ModuleTester - logger.py:185: ============================================================
